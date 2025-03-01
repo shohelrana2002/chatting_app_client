@@ -4,9 +4,10 @@ import singUpImage from "/Forms-bro.png";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { FaSpinner } from "react-icons/fa";
 const Login = () => {
   const navigate = useNavigate();
-  const { handleLogin } = useAuth();
+  const { handleLogin, loading, setLoading } = useAuth();
   const [show, setShow] = useState(false);
   const {
     register,
@@ -20,8 +21,8 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       toast.error(error.message);
+      setLoading(false);
     }
-    console.log(data);
   };
   return (
     <div className="hero min-h-screen">
@@ -44,7 +45,7 @@ const Login = () => {
                 placeholder="email"
                 {...register("email", {
                   required: true,
-                  pattern: /^[a-zA-Z0-9._%+-]+@gmail\.com$/i,
+                  pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
                 })}
                 className="input input-bordered w-full pr-10"
               />
@@ -80,11 +81,17 @@ const Login = () => {
               )}
             </div>
             <div className="form-control mt-6">
-              <input
-                className=" btn btn-primary w-full pr-10"
+              <button
+                disabled={loading}
+                className=" btn btn-primary w-full pr-10 text-xl"
                 type="submit"
-                value="Sing Up"
-              />
+              >
+                {loading ? (
+                  <FaSpinner className="animate-spin m-auto" />
+                ) : (
+                  "Sign In"
+                )}
+              </button>
             </div>
             <div className="text-center mt-5">
               <p>

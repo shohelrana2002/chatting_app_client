@@ -97,7 +97,8 @@ const Register = () => {
                   placeholder="email"
                   {...register("email", {
                     required: true,
-                    pattern: /^[a-zA-Z0-9._%+-]+@gmail\.com$/i,
+                    pattern:
+                      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
                   })}
                   className="input input-bordered w-full pr-10"
                 />
