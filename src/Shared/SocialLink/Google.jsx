@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGoogle, FaSpinner } from "react-icons/fa";
+import { FaFacebook, FaGoogle, FaSpinner } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 
@@ -38,7 +38,7 @@ const Google = () => {
           <FaSpinner className="animate-spin text-xl text-yellow-500 font-bold m-auto" />
         ) : (
           <>
-            Facebook <FaGoogle />
+            Facebook <FaFacebook />
           </>
         )}
       </button>
