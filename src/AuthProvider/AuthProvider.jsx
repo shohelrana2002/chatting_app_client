@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
 export const AuthContext = createContext(null);
@@ -31,6 +32,10 @@ const AuthProvider = ({ children }) => {
   const handleGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, provider);
+  };
+  const HandleUpdateProfile = (currentUser) => {
+    setLoading(true);
+    return updateProfile(auth, currentUser);
   };
   // Mange User
   useEffect(() => {
