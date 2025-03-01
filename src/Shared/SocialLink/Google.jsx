@@ -38,7 +38,7 @@ const Google = () => {
           <FaSpinner className="animate-spin text-xl text-yellow-500 font-bold m-auto" />
         ) : (
           <>
-            Google <FaGoogle />
+            Facebook <FaGoogle />
           </>
         )}
       </button>
