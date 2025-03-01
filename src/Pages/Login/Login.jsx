@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
+import Google from "../../Shared/SocialLink/Google";
 const Login = () => {
   const navigate = useNavigate();
   const { handleLogin, loading, setLoading } = useAuth();
@@ -35,6 +36,8 @@ const Login = () => {
         <div className="card  w-full max-w-full md:max-w-[50%] ">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="text-center lg:text-left">
+              <Google />
+
               <h1 className="text-5xl text-center font-bold">Sing In</h1>
             </div>
 
