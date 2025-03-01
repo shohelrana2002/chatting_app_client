@@ -55,6 +55,7 @@ const AuthProvider = ({ children }) => {
     handleUserCreate,
     handleLogout,
     handleLogin,
+    HandleUpdateProfile,
     handleGoogle,
   };
   return (

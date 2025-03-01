@@ -6,7 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 const Register = () => {
   const navigate = useNavigate();
-  const { handleUserCreate } = useAuth();
+  const { handleUserCreate, HandleUpdateProfile } = useAuth();
   const [show, setShow] = useState(false);
   const {
     register,
@@ -16,7 +16,12 @@ const Register = () => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      await handleUserCreate(data.email, data.password);
+      const user = await handleUserCreate(data.email, data.password);
+      await HandleUpdateProfile(user, {
+        displayName: user?.displayName,
+        photoURL: user?.photoURL,
+      });
+      console.log(user);
       toast.success("Create a Account Successfully");
       navigate("/");
     } catch (error) {
