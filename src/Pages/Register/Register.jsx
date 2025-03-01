@@ -16,12 +16,12 @@ const Register = () => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      const user = await handleUserCreate(data.email, data.password);
-      await HandleUpdateProfile(user, {
-        displayName: user?.displayName,
-        photoURL: user?.photoURL,
+      await handleUserCreate(data.email, data.password);
+      await HandleUpdateProfile({
+        displayName: data?.displayName,
+        photoURL: data?.photoURL,
       });
-      console.log(user);
+      console.log(data);
       toast.success("Create a Account Successfully");
       navigate("/");
     } catch (error) {

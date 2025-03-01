@@ -33,9 +33,11 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
-  const HandleUpdateProfile = (currentUser) => {
-    setLoading(true);
-    return updateProfile(auth, currentUser);
+  const HandleUpdateProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
   };
   // Mange User
   useEffect(() => {
