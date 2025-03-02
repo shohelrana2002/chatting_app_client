@@ -26,7 +26,9 @@ const NavBar = () => {
             {nav}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to={"/"} className="btn btn-ghost text-xl">
+          Chatting Application
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{nav}</ul>
@@ -34,7 +36,7 @@ const NavBar = () => {
       <div className="navbar-end gap-x-4">
         {user ? (
           <>
-            <p className="cursor-pointer mr-4 text-orange-500">{user?.email}</p>
+            <NavLink>Profile</NavLink>
             <button
               onClick={() => handleLogout()}
               className="btn btn-outline btn-primary"

@@ -18,29 +18,17 @@ const Google = () => {
     <div className="flex gap-4 justify-center items-center w-full">
       <button
         disabled={loading}
-        onClick={google}
-        className="cursor-pointer  btn btn-secondary"
+        onClick={() => google()}
+        className="cursor-pointer btn-md btn btn-secondary disabled:cursor-not-allowed"
       >
-        {loading ? (
-          <FaSpinner className="animate-spin text-xl text-yellow-500 font-bold m-auto" />
-        ) : (
-          <>
-            Google <FaGoogle />
-          </>
-        )}
+        Google <FaGoogle />
       </button>
       <button
         disabled={loading}
         onClick={google}
-        className="cursor-pointer  btn btn-secondary"
+        className="cursor-pointer disabled:cursor-not-allowed btn btn-md btn-secondary"
       >
-        {loading ? (
-          <FaSpinner className="animate-spin text-xl text-yellow-500 font-bold m-auto" />
-        ) : (
-          <>
-            Facebook <FaFacebook />
-          </>
-        )}
+        Facebook <FaFacebook />
       </button>
     </div>
   );

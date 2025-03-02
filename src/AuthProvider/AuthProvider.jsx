@@ -5,6 +5,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -39,6 +40,10 @@ const AuthProvider = ({ children }) => {
       photoURL: photo,
     });
   };
+  const sendEmailVerify = (user) => {
+    setLoading(true);
+    return sendEmailVerification(auth, user);
+  };
   // Mange User
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -59,6 +64,7 @@ const AuthProvider = ({ children }) => {
     handleLogin,
     HandleUpdateProfile,
     handleGoogle,
+    sendEmailVerify,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

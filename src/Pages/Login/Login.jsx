@@ -34,10 +34,9 @@ const Login = () => {
           </picture>
         </div>
         <div className="card  w-full max-w-full md:max-w-[50%] ">
+          <Google />
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="text-center lg:text-left">
-              <Google />
-
               <h1 className="text-5xl text-center font-bold">Sing In</h1>
             </div>
 
@@ -90,7 +89,7 @@ const Login = () => {
                 type="submit"
               >
                 {loading ? (
-                  <FaSpinner className="animate-spin m-auto" />
+                  <FaSpinner className="animate-spin text-primary text-xl font-bold m-auto" />
                 ) : (
                   "Sign In"
                 )}

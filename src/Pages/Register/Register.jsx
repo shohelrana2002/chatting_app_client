@@ -4,9 +4,17 @@ import singUpImage from "/Forms-bro.png";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import Google from "../../Shared/SocialLink/Google";
+import { FaSpinner } from "react-icons/fa";
 const Register = () => {
   const navigate = useNavigate();
-  const { handleUserCreate, HandleUpdateProfile } = useAuth();
+  const {
+    handleUserCreate,
+    HandleUpdateProfile,
+    sendEmailVerify,
+    setLoading,
+    loading,
+  } = useAuth();
   const [show, setShow] = useState(false);
   const {
     register,
@@ -16,16 +24,23 @@ const Register = () => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      await handleUserCreate(data.email, data.password);
-      await HandleUpdateProfile({
-        displayName: data?.displayName,
-        photoURL: data?.photoURL,
+      setLoading(true);
+      const userCredential = await handleUserCreate(data.email, data.password);
+      const user = userCredential?.user;
+      await sendEmailVerify(user);
+      await HandleUpdateProfile(data.name, data.photoURL).then(() => {
+        const userInfo = {
+          email: data.email,
+          photo: data.photoURL,
+        };
+        console.log(userInfo);
       });
-      console.log(data);
-      toast.success("Create a Account Successfully");
+
+      toast.success("Account created successfully! Please verify your email.");
       navigate("/");
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
+      setLoading(false);
     }
   };
   const password = watch("password", "");
@@ -48,12 +63,14 @@ const Register = () => {
               <img className="w-full " src={singUpImage} alt={singUpImage} />
             </picture>
           </div>
+
           <div className="card  w-full max-w-full md:max-w-[50%] ">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-              <div className="text-center lg:text-left">
+              <div className="text-center mb-4 lg:text-left">
                 <h1 className="text-5xl text-center font-bold">SingUp</h1>
               </div>
-              <div className="form-control">
+              <Google />
+              <div className="form-control ">
                 <label className="block font-semibold mb-2">
                   Name
                   {errors.name && (
@@ -158,11 +175,17 @@ const Register = () => {
                 )}
               </div>
               <div className="form-control mt-6">
-                <input
+                <button
+                  disabled={loading}
                   className=" btn btn-primary w-full pr-10"
                   type="submit"
-                  value="Sing Up"
-                />
+                >
+                  {loading ? (
+                    <FaSpinner className="text-orange-500 font-bold text-2xl animate-spin" />
+                  ) : (
+                    "Sing Up"
+                  )}
+                </button>
               </div>
               <div className="text-center mt-5">
                 <p>
