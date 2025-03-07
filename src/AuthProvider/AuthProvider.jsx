@@ -12,6 +12,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
+import axios from "axios";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
@@ -44,11 +45,25 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return sendEmailVerification(auth, user);
   };
+  const handleSaveUsers = async (user) => {
+    const userInfo = {
+      email: user?.email,
+      name: user?.displayName,
+      image: user?.photoURL,
+    };
+    const { data } = await axios.patch(
+      `${import.meta.env.VITE_URL}/user`,
+      userInfo
+    );
+    console.log(data);
+    return data;
+  };
   // Mange User
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoading(false);
       setUser(currentUser);
+      handleSaveUsers(currentUser);
       console.log(currentUser);
     });
     return () => {

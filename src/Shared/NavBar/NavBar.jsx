@@ -2,8 +2,11 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import { IoMdMenu } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
+import { CgProfile } from "react-icons/cg";
+import profile from "/profileImage.avif";
 const NavBar = () => {
   const { user, handleLogout } = useAuth();
+
   const nav = [
     <li>
       <NavLink to={"/"}>Home</NavLink>
@@ -12,6 +15,7 @@ const NavBar = () => {
       <NavLink to={"/about"}>About</NavLink>
     </li>,
   ];
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -33,16 +37,38 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{nav}</ul>
       </div>
+      {/* use */}
       <div className="navbar-end gap-x-4">
         {user ? (
           <>
-            <NavLink>Profile</NavLink>
-            <button
-              onClick={() => handleLogout()}
-              className="btn btn-outline btn-primary"
-            >
-              Logout
-            </button>
+            <div className="dropdown cursor-pointer dropdown-end">
+              <div tabIndex={0} role="button" className="cursor-pointer mr-4">
+                <div className="avatar">
+                  <div className="ring-primary ring-offset-base-100 w-12 h-12 cursor-pointer rounded-full ring ring-offset-2">
+                    <img src={profile} />
+                  </div>
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-100 gap-y-2 rounded-box z-1 w-52 p-2 shadow-sm"
+              >
+                <li>
+                  <NavLink
+                    className="btn btn-outline btn-primary"
+                    to="/profile"
+                  >
+                    Profile <CgProfile />
+                  </NavLink>
+                </li>
+                <button
+                  onClick={() => handleLogout()}
+                  className="btn btn-outline btn-primary"
+                >
+                  Logout
+                </button>
+              </ul>
+            </div>
           </>
         ) : (
           <>
