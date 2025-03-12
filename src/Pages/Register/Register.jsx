@@ -16,6 +16,7 @@ const Register = () => {
   const {
     handleUserCreate,
     HandleUpdateProfile,
+    // eslint-disable-next-line no-unused-vars
     sendEmailVerify,
     setLoading,
     loading,
@@ -40,6 +41,7 @@ const Register = () => {
     try {
       // Create user and get the user object
       const userCredential = await handleUserCreate(data.email, data.password);
+      navigate("/");
       const user = userCredential.user;
       console.log(user);
       // Upload image
@@ -50,7 +52,6 @@ const Register = () => {
       await userUpdateInfo(update);
       console.log("User updated successfully");
       toast.success("Account created successfully! Please verify your email.");
-      navigate("/");
     } catch (error) {
       toast.error(error.message);
     } finally {

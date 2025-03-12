@@ -2,13 +2,16 @@ import React from "react";
 import { FaFacebook, FaGoogle, FaSpinner } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const Google = () => {
   const { handleGoogle, loading, setLoading } = useAuth();
+  const navigate = useNavigate();
   const google = async () => {
     try {
       setLoading(true);
       await handleGoogle();
+      navigate("/");
     } catch (error) {
       setLoading(false);
       toast.error(error.message);
