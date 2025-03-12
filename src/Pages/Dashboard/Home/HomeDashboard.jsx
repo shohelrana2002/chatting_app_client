@@ -6,16 +6,10 @@ import UserList from "../../../Components/DashboardItems/HomeItems/UserList";
 
 const HomeDashboard = () => {
   return (
-    <div className="flex justify-around">
-      <div>
-        <GroupFriendsList />
-      </div>
-      <div>
-        <FriendsList />
-      </div>
-      <div>
-        <UserList />
-      </div>
+    <div className="flex gap-x-4 md:flex-row flex-col justify-around">
+      <GroupFriendsList />
+      <FriendsList />
+      <UserList />
     </div>
   );
 };
