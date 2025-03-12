@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import { IoMdMenu } from "react-icons/io";
 import useAuth from "../../Hooks/useAuth";
-import { CgProfile } from "react-icons/cg";
+import { MdDashboard } from "react-icons/md";
 import profile from "/profileImage.avif";
 const NavBar = () => {
   const { user, handleLogout } = useAuth();
@@ -56,9 +56,9 @@ const NavBar = () => {
                 <li>
                   <NavLink
                     className="btn btn-outline btn-primary"
-                    to="/profile"
+                    to="/dashboard"
                   >
-                    Profile <CgProfile />
+                    Dashboard <MdDashboard />
                   </NavLink>
                 </li>
                 <button

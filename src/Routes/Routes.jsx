@@ -4,7 +4,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Home from "../Home/Home/Home";
 import About from "../Home/About/About";
-import Profile from "../Pages/Profile/Profile";
+import DashboardLayout from "../Layout/DashboardLayout";
+import HomeDashboard from "../Pages/Dashboard/Home/HomeDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -14,11 +15,6 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-      },
-
-      {
-        path: "/profile",
-        element: <Profile />,
       },
 
       {
@@ -32,6 +28,16 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        element: <HomeDashboard />,
       },
     ],
   },

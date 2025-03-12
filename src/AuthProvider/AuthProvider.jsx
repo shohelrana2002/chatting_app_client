@@ -35,10 +35,10 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
-  const HandleUpdateProfile = (name, photo) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: photo,
+  const HandleUpdateProfile = (user, name, photo) => {
+    return updateProfile(user, {
+      displayName: name || "",
+      photoURL: photo || "",
     });
   };
   const sendEmailVerify = (user) => {
@@ -55,7 +55,6 @@ const AuthProvider = ({ children }) => {
       `${import.meta.env.VITE_URL}/user`,
       userInfo
     );
-    console.log(data);
     return data;
   };
   // Mange User
@@ -64,7 +63,6 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       setUser(currentUser);
       handleSaveUsers(currentUser);
-      console.log(currentUser);
     });
     return () => {
       return unSubscribe();

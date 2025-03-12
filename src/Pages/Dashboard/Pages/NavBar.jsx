@@ -1,0 +1,64 @@
+import { CgHome } from "react-icons/cg";
+import NavBarItems from "../../../Shared/NavBar/NavBarItems";
+import { FaUpload } from "react-icons/fa";
+import { FaMessage } from "react-icons/fa6";
+import { TiThMenu } from "react-icons/ti";
+import { FaBell } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5";
+import { CiLogout } from "react-icons/ci";
+const NavBar = () => {
+  return (
+    <>
+      <div className="drawer  lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col items-start justify-items-start">
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-primary drawer-button lg:hidden"
+          >
+            <CgHome />
+          </label>
+        </div>
+        <div className="drawer-side ">
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <div className="menu bg-[#5F35F5] flex  justify-between  text-base-content min-h-full w-64 p-4">
+            <ul>
+              {/* Sidebar content here */}
+              <div className="relative  mx-auto text-center group">
+                <div className="avatar">
+                  <div className="ring-primary  cursor-pointer ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  </div>
+                </div>
+                <span className="absolute hidden group-hover:block text-xl transition-all duration-500  left-[104px] -translate-y-1/2  top-12">
+                  <FaUpload />
+                </span>
+              </div>
+              <NavBarItems label="Home" address="/dashboard" icon={TiThMenu} />
+              <NavBarItems label="Message" address="message" icon={FaMessage} />
+              <NavBarItems
+                label="Notification"
+                address="notification"
+                icon={FaBell}
+              />
+              <NavBarItems
+                label="Setting"
+                address="setting"
+                icon={IoSettings}
+              />
+            </ul>
+            <ul>
+              <NavBarItems label="Setting" address="setting" icon={CiLogout} />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default NavBar;

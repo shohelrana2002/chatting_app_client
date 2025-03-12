@@ -6,7 +6,12 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Google from "../../Shared/SocialLink/Google";
 import { FaSpinner } from "react-icons/fa";
+import { imageUpload } from "../../Api/utils";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosCommon from "../../Hooks/useAxiosCommon";
+
 const Register = () => {
+  const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
   const {
     handleUserCreate,
@@ -22,27 +27,46 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const { mutateAsync: userUpdateInfo = [] } = useMutation({
+    mutationFn: async (user) => {
+      const { data } = await axiosCommon.patch(`/user`, user);
+      return data;
+    },
+  });
   const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      const userCredential = await handleUserCreate(data.email, data.password);
-      const user = userCredential?.user;
-      await sendEmailVerify(user);
-      await HandleUpdateProfile(data.name, data.photoURL).then(() => {
-        const userInfo = {
-          email: data.email,
-          photo: data.photoURL,
-        };
-        console.log(userInfo);
-      });
+    setLoading(true);
+    const imageFile = data.photoURL[0];
 
+    try {
+      // Create user and get the user object
+      const userCredential = await handleUserCreate(data.email, data.password);
+      const user = userCredential.user;
+      console.log(user);
+      // Upload image
+      const pic = await imageUpload(imageFile);
+
+      // Update user profile
+      const update = await HandleUpdateProfile(user, data?.name, pic);
+      await userUpdateInfo(update);
+      console.log("User updated successfully");
       toast.success("Account created successfully! Please verify your email.");
       navigate("/");
     } catch (error) {
       toast.error(error.message);
+    } finally {
       setLoading(false);
     }
   };
+
+  // try {
+
+  //   toast.success("Account created successfully! Please verify your email.");
+  //   navigate("/");
+  // } catch (error) {
+  //   toast.error(error.message);
+  //   setLoading(false);
+  // }
+  // };
   const password = watch("password", "");
   const passwordRules = [
     { text: "At least 8 characters", valid: password.length >= 8 },
@@ -100,11 +124,10 @@ const Register = () => {
                   )}
                 </label>
                 <input
-                  type="url"
-                  placeholder="Photo URL"
+                  type="file"
+                  placeholder="Photo"
                   {...register("photoURL", {
                     required: true,
-                    pattern: /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))$/i,
                   })}
                   className="input input-bordered w-full pr-10"
                 />
