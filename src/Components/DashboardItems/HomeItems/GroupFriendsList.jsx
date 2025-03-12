@@ -1,10 +1,10 @@
 import React from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
-const GroupList = () => {
+
+const GroupFriendsList = () => {
   return (
-    <div className="">
+    <div>
       <label className="input">
         <svg
           className="h-[1em] opacity-50"
@@ -27,7 +27,7 @@ const GroupList = () => {
       {/* Group list */}
       <div>
         <div>
-          <DashBoardTitle groupName="Friends" />
+          <DashBoardTitle groupName="Group List" />
         </div>
         <DashBoardLink name={"Friends"} address="DinajPur" buttonName="Join" />
         <DashBoardLink name={"Friends"} address="DinajPur" buttonName="Join" />
@@ -36,4 +36,4 @@ const GroupList = () => {
   );
 };
 
-export default GroupList;
+export default GroupFriendsList;

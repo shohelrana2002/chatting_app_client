@@ -1,10 +1,21 @@
 import React from "react";
-import GroupList from "../../../Components/DashboardItems/HomeItems/GroupList";
+import GroupList from "../../../Components/DashboardItems/HomeItems/GroupFriendsList";
+import GroupFriendsList from "../../../Components/DashboardItems/HomeItems/GroupFriendsList";
+import FriendsList from "../../../Components/DashboardItems/HomeItems/FriendsList";
+import UserList from "../../../Components/DashboardItems/HomeItems/UserList";
 
 const HomeDashboard = () => {
   return (
-    <div className="grid grid-cols-2">
-      <GroupList />
+    <div className="flex justify-around">
+      <div>
+        <GroupFriendsList />
+      </div>
+      <div>
+        <FriendsList />
+      </div>
+      <div>
+        <UserList />
+      </div>
     </div>
   );
 };

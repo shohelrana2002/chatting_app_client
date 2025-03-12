@@ -3,7 +3,7 @@ const DashBoardLink = ({ name, buttonName, address }) => {
   return (
     <>
       <div>
-        <div className="flex items-center gap-y-4 gap-x-12">
+        <div className="flex shadow-2xl items-center gap-y-4 gap-x-12">
           <div>
             <picture>
               <img
