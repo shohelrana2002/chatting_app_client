@@ -6,7 +6,16 @@ import { TiThMenu } from "react-icons/ti";
 import { FaBell } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
+import useAuth from "../../../Hooks/useAuth";
+import { useNavigate } from "react-router";
 const NavBar = () => {
+  const { handleLogout } = useAuth();
+  const navigate = useNavigate();
+  const logOutUser = () => {
+    handleLogout().then(() => {
+      navigate("/");
+    });
+  };
   return (
     <>
       <div className="drawer  lg:drawer-open">
@@ -52,7 +61,13 @@ const NavBar = () => {
               />
             </ul>
             <ul>
-              <NavBarItems label="Setting" address="setting" icon={CiLogout} />
+              <button
+                onClick={logOutUser}
+                className="flex items-center px-4 py-2 my-5 transition-colors duration-300 transform hover:bg-gray-200 text-white hover:text-gray-600 w-full text-left"
+              >
+                <CiLogout className="w-5 h-5" />
+                <span className="mx-4 font-medium">Log Out</span>
+              </button>
             </ul>
           </div>
         </div>

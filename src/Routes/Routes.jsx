@@ -6,6 +6,7 @@ import Home from "../Home/Home/Home";
 import About from "../Home/About/About";
 import DashboardLayout from "../Layout/DashboardLayout";
 import HomeDashboard from "../Pages/Dashboard/Home/HomeDashboard";
+import Message from "../Pages/Dashboard/Pages/Message";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomeDashboard />,
+      },
+      {
+        path: "message",
+        element: <Message />,
       },
     ],
   },
