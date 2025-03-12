@@ -47,11 +47,15 @@ const NavBar = () => {
                   <FaUpload />
                 </span>
               </div>
-              <NavBarItems label="Home" address="/dashboard" icon={TiThMenu} />
-              <NavBarItems label="Message" address="message" icon={FaMessage} />
+              <NavBarItems label="Home" address="/" icon={TiThMenu} />
+              <NavBarItems
+                label="Message"
+                address="/message"
+                icon={FaMessage}
+              />
               <NavBarItems
                 label="Notification"
-                address="notification"
+                address="/notification-user"
                 icon={FaBell}
               />
               <NavBarItems
