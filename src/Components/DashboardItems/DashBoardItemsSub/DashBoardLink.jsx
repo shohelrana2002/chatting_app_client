@@ -1,6 +1,4 @@
 import React from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
-
 const DashBoardLink = ({ name, buttonName, address }) => {
   return (
     <>
@@ -9,7 +7,7 @@ const DashBoardLink = ({ name, buttonName, address }) => {
           <div>
             <picture>
               <img
-                className="w-16 h-16 border-2 border-primary p-1 rounded-full"
+                className="w-16 my-2 h-16 border-2 border-primary p-1 rounded-full"
                 src="https://i.ibb.co.com/JFq21TVt/remove.png"
                 alt=""
               />

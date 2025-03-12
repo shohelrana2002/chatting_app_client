@@ -1,6 +1,7 @@
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
+import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
 const GroupList = () => {
   return (
     <div className="">
@@ -25,11 +26,8 @@ const GroupList = () => {
       </label>
       {/* Group list */}
       <div>
-        <div className="flex justify-between my-12">
-          <h1>Friends</h1>
-          <h3>
-            <BsThreeDotsVertical />
-          </h3>
+        <div>
+          <DashBoardTitle groupName="Friends" />
         </div>
         <DashBoardLink name={"Friends"} address="DinajPur" buttonName="Join" />
         <DashBoardLink name={"Friends"} address="DinajPur" buttonName="Join" />
