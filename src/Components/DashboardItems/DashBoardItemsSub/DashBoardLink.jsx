@@ -6,7 +6,7 @@ const DashBoardLink = ({ name, buttonName, address }) => {
         <div>
           <picture>
             <img
-              className="w-12 my-2 h-12 border-2 border-primary p-1 rounded-full"
+              className="w-12 sm:w-fit my-2 h-12 border-2 border-primary p-1 rounded-full"
               src="https://i.ibb.co.com/JFq21TVt/remove.png"
               alt=""
             />

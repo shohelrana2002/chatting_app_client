@@ -4,7 +4,7 @@ import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 
 const FriendsList = () => {
   return (
-    <div className="shadow-xl rounded-2xl h-full">
+    <div className="shadow-xl rounded-2xl  p-12">
       <DashBoardTitle groupName="Friends" />
       <DashBoardLink address="Dhaka" name="Jov_en" buttonName="12,march.2025" />
       <DashBoardLink address="Dhaka" name="Jov_en" buttonName="12,march.2025" />
