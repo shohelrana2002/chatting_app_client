@@ -8,6 +8,7 @@ import { IoSettings } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import useAuth from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router";
+import Login from "../../Login/Login";
 const NavBar = () => {
   const { handleLogout } = useAuth();
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const NavBar = () => {
                     <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                   </div>
                 </div>
-                <span className="absolute hidden group-hover:block text-xl transition-all duration-500  left-[104px] -translate-y-1/2  top-12">
+                <span className="absolute cursor-pointer hidden group-hover:block text-xl transition-all duration-500  left-[104px] -translate-y-1/2  top-12">
                   <FaUpload />
                 </span>
               </div>
