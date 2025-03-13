@@ -40,7 +40,7 @@ const NavBar = () => {
           <div className="menu bg-[#5F35F5] flex  justify-between  text-base-content min-h-full w-64 p-4">
             <ul>
               {/* Sidebar content here */}
-              {/* 2 3 4 5 7 8*/}
+              {/* 2 3 4 5 7 8 9*/}
               <div className="relative  mx-auto text-center group">
                 <div className="avatar">
                   <div className="ring-primary  cursor-pointer ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
