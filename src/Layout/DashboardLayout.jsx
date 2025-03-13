@@ -9,7 +9,7 @@ const DashboardLayout = () => {
   const { user, loading } = useAuth();
   if (loading) return <LoadingSpinner />;
   return (
-    <>
+    <div className="max-w-[1400px] mx-auto">
       {user ? (
         <>
           <div className="flex gap-x-12 justify-between">
@@ -26,7 +26,7 @@ const DashboardLayout = () => {
           <Login />
         </>
       )}
-    </>
+    </div>
   );
 };
 

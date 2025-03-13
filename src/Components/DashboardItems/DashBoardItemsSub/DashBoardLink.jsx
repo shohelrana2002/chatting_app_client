@@ -2,11 +2,11 @@ import React from "react";
 const DashBoardLink = ({ name, buttonName, address }) => {
   return (
     <>
-      <div className="flex  items-center gap-y-4 gap-x-12">
+      <div className="flex items-center gap-y-4 gap-x-12">
         <div>
           <picture>
             <img
-              className="w-12 sm:w-fit my-2 h-12 border-2 border-primary p-1 rounded-full"
+              className=" md:w-8 object-cover md:h-8 h-full w-full  my-2  border-2 border-primary  rounded-full"
               src="https://i.ibb.co.com/JFq21TVt/remove.png"
               alt=""
             />

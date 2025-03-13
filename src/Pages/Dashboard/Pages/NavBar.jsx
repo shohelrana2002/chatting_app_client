@@ -24,12 +24,14 @@ const NavBar = () => {
         <div className="drawer-content flex flex-col items-start justify-items-start">
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn btn-primary drawer-button  lg:hidden"
           >
-            <CgHome />
+            <span>
+              <CgHome />
+            </span>
           </label>
         </div>
-        <div className="drawer-side ">
+        <div className="drawer-side z-50">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
