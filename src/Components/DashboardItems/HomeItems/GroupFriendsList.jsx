@@ -4,7 +4,7 @@ import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
 
 const GroupFriendsList = () => {
   return (
-    <div>
+    <div className="shadow">
       <label className="input z-10">
         <svg
           className="h-[1em] opacity-50"
@@ -26,9 +26,9 @@ const GroupFriendsList = () => {
       </label>
       {/* Group list */}
       <div className="shadow-xl rounded-2xl px-12">
-        <div>
+        <>
           <DashBoardTitle groupName="Group List" />
-        </div>
+        </>
         <DashBoardLink name={"Friends"} address="DinajPur" buttonName="Join" />
         <DashBoardLink name={"Friends"} address="DinajPur" buttonName="Join" />
       </div>
