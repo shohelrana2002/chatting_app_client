@@ -12,11 +12,11 @@ const DashboardLayout = () => {
     <div className="max-w-[1400px] mx-auto">
       {user ? (
         <>
-          <div className="flex gap-x-12 justify-between">
+          <div className="flex gap-x-12 h-screen justify-between">
             <div>
               <NavBar />
             </div>
-            <div className="w-full mt-6">
+            <div className="w-full overflow-y-auto h-full mt-6">
               <Outlet />
             </div>
           </div>
