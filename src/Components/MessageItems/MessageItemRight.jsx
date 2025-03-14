@@ -5,12 +5,12 @@ import { IoIosSend } from "react-icons/io";
 export default function ChatComponent() {
   const [messages, setMessages] = useState([
     {
-      sender: "Obi-Wan Kenobi",
+      sender: "Ms . Y",
       text: "You were the Chosen One!",
       time: new Date().toLocaleDateString(),
       align: "start",
     },
-    { sender: "Anakin", text: "I hate you!", time: "12:46", align: "end" },
+    { sender: "Mr. X", text: "I hate you!", time: "12:46", align: "end" },
   ]);
   const [inputText, setInputText] = useState("");
 
