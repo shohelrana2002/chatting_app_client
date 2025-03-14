@@ -1,9 +1,14 @@
 import React from "react";
+import MessageItemSearchBar from "./MessageItemSearchBar";
+import Group from "../DashboardItems/HomeItems/Group";
+import FriendsList from "../DashboardItems/HomeItems/FriendsList";
 
 const MessageItemLeft = () => {
   return (
     <div>
-      <p>Left Items</p>
+      <MessageItemSearchBar />
+      <Group />
+      <FriendsList />
     </div>
   );
 };

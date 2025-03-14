@@ -4,7 +4,7 @@ import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 
 const Group = () => {
   return (
-    <div className="shadow-xl rounded-2xl px-12">
+    <div className="shadow-xl rounded-2xl px-4">
       <DashBoardTitle groupName="Group" />
       <DashBoardLink address="Dhaka " buttonName="Today" name="Raghav" />
       <DashBoardLink address="Dhaka " buttonName="Today" name="Raghav" />

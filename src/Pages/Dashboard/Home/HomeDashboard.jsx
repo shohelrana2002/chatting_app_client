@@ -8,7 +8,7 @@ import BlockUsers from "../../../Components/DashboardItems/HomeItems/BlockUsers"
 
 const HomeDashboard = () => {
   return (
-    <div className="grid grid-cols-3 gap-x-2">
+    <div className="grid justify-center items-center grid-cols-1 md:grid-cols-3 gap-x-2">
       <GroupFriendsList />
       <FriendsList />
       <UserList />

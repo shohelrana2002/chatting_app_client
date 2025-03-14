@@ -25,7 +25,7 @@ const GroupFriendsList = () => {
         <input type="search" required placeholder="Search" />
       </label>
       {/* Group list */}
-      <div className="shadow-xl rounded-2xl px-12">
+      <div className="shadow-xl rounded-2xl px-6">
         <>
           <DashBoardTitle groupName="Group List" />
         </>
