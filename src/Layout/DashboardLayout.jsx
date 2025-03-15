@@ -8,6 +8,7 @@ import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 const DashboardLayout = () => {
   const { user, loading } = useAuth();
   if (loading) return <LoadingSpinner />;
+  // 4
   return (
     <div className="max-w-[1400px] mx-auto">
       {user ? (
