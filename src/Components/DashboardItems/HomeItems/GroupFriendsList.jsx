@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
 
 const GroupFriendsList = () => {
+  const [userData, setUserData] = useState([]);
+  console.log(userData);
+  useEffect(() => {
+    try {
+      fetch("user.json")
+        .then((res) => res.json())
+        .then((data) => {
+          setUserData(data);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   return (
-    <div className="shadow">
-      <label className="input z-10">
+    <div className="h-[360px] w-full  p-2 rounded-2xl shadow overflow-y-scroll">
+      <label className="input fixed top-8 bg-blue-50 z-10">
         <svg
           className="h-[1em] opacity-50"
           xmlns="http://www.w3.org/2000/svg"
@@ -25,12 +38,10 @@ const GroupFriendsList = () => {
         <input type="search" required placeholder="Search" />
       </label>
       {/* Group list */}
-      <div className="shadow-xl rounded-2xl px-6">
+      <div className="shadow-xl  rounded-2xl px-6">
         <>
           <DashBoardTitle groupName="Group List" />
         </>
-        <DashBoardLink name={"Friends"} address="DinajPur" buttonName="Join" />
-        <DashBoardLink name={"Friends"} address="DinajPur" buttonName="Join" />
       </div>
     </div>
   );

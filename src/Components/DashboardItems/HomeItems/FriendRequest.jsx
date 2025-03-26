@@ -4,8 +4,10 @@ import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 
 const FriendRequest = () => {
   return (
-    <div className="shadow-xl rounded-2xl px-12">
+    <div className="h-[360px] w-full  p-2 rounded-2xl shadow overflow-y-scroll">
       <DashBoardTitle groupName="Friend Request" />
+      <DashBoardLink address="Dhaka" name="Raghav" buttonName="Accept" />
+      <DashBoardLink address="Dhaka" name="Raghav" buttonName="Accept" />
       <DashBoardLink address="Dhaka" name="Raghav" buttonName="Accept" />
       <DashBoardLink address="Dhaka" name="Raghav" buttonName="Accept" />
     </div>

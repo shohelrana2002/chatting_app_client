@@ -27,7 +27,7 @@ const DashboardLayout = () => {
             <div>
               <NavBar />
             </div>
-            <div className="w-full overflow-y-auto h-full mt-6">
+            <div className="w-full  h-full mt-6">
               <Outlet />
             </div>
           </div>

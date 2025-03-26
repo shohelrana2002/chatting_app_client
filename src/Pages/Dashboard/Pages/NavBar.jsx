@@ -8,7 +8,6 @@ import { IoSettings } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import useAuth from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router";
-import Login from "../../Login/Login";
 const NavBar = () => {
   const { handleLogout } = useAuth();
   const navigate = useNavigate();
