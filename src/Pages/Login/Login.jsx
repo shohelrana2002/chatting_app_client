@@ -6,19 +6,33 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import Google from "../../Shared/SocialLink/Google";
+import { getAuth, reload } from "firebase/auth";
+
 const Login = () => {
   const navigate = useNavigate();
   const { handleLogin, loading, setLoading } = useAuth();
   const [show, setShow] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = async (data) => {
     try {
       await handleLogin(data?.email, data?.password);
-      toast.success("Login success");
+
+      const auth = getAuth();
+      await reload(auth.currentUser); // Refresh user info
+      const currentUser = auth.currentUser;
+      console.log(currentUser);
+      if (!currentUser?.emailVerified) {
+        setLoading(false);
+        // navigate("/login");
+        return toast.error("Please verify your email before logging in.");
+      }
+      setLoading(false);
       navigate("/");
     } catch (error) {
       toast.error(error.message);

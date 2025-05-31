@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import singUpImage from "/Forms-bro.png";
 import { Link, useNavigate } from "react-router";
@@ -6,13 +6,16 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Google from "../../Shared/SocialLink/Google";
 import { FaSpinner } from "react-icons/fa";
-import { imageUpload } from "../../Api/utils";
-import { useMutation } from "@tanstack/react-query";
-import useAxiosCommon from "../../Hooks/useAxiosCommon";
+// import { imageUpload } from "../../Api/utils";
+// import { useMutation } from "@tanstack/react-query";
+// import useAxiosCommon from "../../Hooks/useAxiosCommon";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Register = () => {
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
+  const { user, handleLogout } = useContext(AuthContext);
+  console.log(user);
   const {
     handleUserCreate,
     HandleUpdateProfile,
@@ -28,34 +31,39 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const { mutateAsync: userUpdateInfo = [] } = useMutation({
-    mutationFn: async (user) => {
-      const { data } = await axiosCommon.patch(`/user`, user);
-      return data;
-    },
-  });
+  // const { mutateAsync: userUpdateInfo = [] } = useMutation({
+  //   mutationFn: async (user) => {
+  //     const { data } = await axiosCommon.patch(`/user`, user);
+  //     return data;
+  //   },
+  // });
   const onSubmit = async (data) => {
     setLoading(true);
-    const imageFile = data.photoURL[0];
-
+    // const imageFile = data.photoURL[0];
     try {
       // Create user and get the user object
-      const userCredential = await handleUserCreate(data.email, data.password);
-      navigate("/");
+      const userCredential = await handleUserCreate(
+        data?.email,
+        data?.password
+      );
       const user = userCredential.user;
-      console.log(user);
+
       // Upload image
-      const pic = await imageUpload(imageFile);
+      // const pic = await imageUpload(imageFile);
 
       // Update user profile
-      const update = await HandleUpdateProfile(user, data?.name, pic);
-      await userUpdateInfo(update);
-      console.log("User updated successfully");
+      // const update = await HandleUpdateProfile(user, data?.name, pic);
+      // await userUpdateInfo(update);
+      await sendEmailVerify(user);
+
+      // console.log("User updated successfully");
       toast.success("Account created successfully! Please verify your email.");
     } catch (error) {
       toast.error(error.message);
     } finally {
       setLoading(false);
+      await handleLogout();
+      navigate("/login");
     }
   };
 

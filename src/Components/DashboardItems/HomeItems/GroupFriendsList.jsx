@@ -4,7 +4,7 @@ import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
 
 const GroupFriendsList = () => {
   const [userData, setUserData] = useState([]);
-  console.log(userData);
+  // console.log(userData);
   useEffect(() => {
     try {
       fetch("user.json")
@@ -13,7 +13,7 @@ const GroupFriendsList = () => {
           setUserData(data);
         });
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   }, []);
   return (

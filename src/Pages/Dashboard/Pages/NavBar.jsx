@@ -8,6 +8,8 @@ import { IoSettings } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import useAuth from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 const NavBar = () => {
   const { handleLogout } = useAuth();
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const NavBar = () => {
       navigate("/");
     });
   };
+  const { user } = useContext(AuthContext);
   return (
     <>
       <div className="drawer  lg:drawer-open">
@@ -43,7 +46,7 @@ const NavBar = () => {
               <div className="relative  mx-auto text-center group">
                 <div className="avatar">
                   <div className="ring-primary  cursor-pointer ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
-                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    <img src={`${user?.photoURL}`} />
                   </div>
                 </div>
                 <span className="absolute cursor-pointer hidden group-hover:block text-xl transition-all duration-500  left-[104px] -translate-y-1/2  top-12">
