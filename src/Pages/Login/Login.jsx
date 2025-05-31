@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import singUpImage from "/Forms-bro.png";
 import { Link, useNavigate } from "react-router";
@@ -22,14 +22,13 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       await handleLogin(data?.email, data?.password);
-
+      // send to email and verify and reload to send message
       const auth = getAuth();
       await reload(auth.currentUser); // Refresh user info
       const currentUser = auth.currentUser;
-      console.log(currentUser);
+      // console.log(currentUser);
       if (!currentUser?.emailVerified) {
         setLoading(false);
-        // navigate("/login");
         return toast.error("Please verify your email before logging in.");
       }
       setLoading(false);

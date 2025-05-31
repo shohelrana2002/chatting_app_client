@@ -15,7 +15,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const logOutUser = () => {
     handleLogout().then(() => {
-      navigate("/");
+      navigate("/login");
     });
   };
   const { user } = useContext(AuthContext);

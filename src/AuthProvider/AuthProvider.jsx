@@ -26,6 +26,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+
   const handleLogout = () => {
     setLoading(true);
     return signOut(auth);
@@ -35,10 +36,10 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
-  const HandleUpdateProfile = (user, name, photo) => {
-    return updateProfile(user, {
-      displayName: name || "",
-      photoURL: photo || "",
+  const HandleUpdateProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
     });
   };
   const sendEmailVerify = (user) => {

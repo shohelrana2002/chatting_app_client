@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
 
 const GroupFriendsList = () => {
   const [userData, setUserData] = useState([]);
-  // console.log(userData);
+  console.log(userData);
   useEffect(() => {
     try {
       fetch("user.json")

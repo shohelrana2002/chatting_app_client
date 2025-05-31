@@ -6,34 +6,47 @@ import HomeDashboard from "../Pages/Dashboard/Home/HomeDashboard";
 import Message from "../Pages/Dashboard/Pages/Message";
 import Setting from "../Pages/Dashboard/Pages/Setting";
 import NotificationUser from "../Pages/Dashboard/Pages/NotificationUser";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout />
+      </PrivateRoutes>
+    ),
     children: [
       {
         index: true,
-        element: <HomeDashboard />,
+        element: (
+          <PrivateRoutes>
+            <HomeDashboard />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/message",
-        element: <Message />,
+        element: (
+          <PrivateRoutes>
+            <Message />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/notification-user",
-        element: <NotificationUser />,
+        element: (
+          <PrivateRoutes>
+            <NotificationUser />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/setting",
-        element: <Setting />,
+        element: <PrivateRoutes></PrivateRoutes>,
       },
     ],
   },
-  // 6 7 8 9 10
   { path: "/register", element: <Register /> },
-  {
-    path: "/login",
-    element: <Login />,
-  },
+  { path: "/login", element: <Login /> },
 ]);

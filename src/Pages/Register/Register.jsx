@@ -6,16 +6,18 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Google from "../../Shared/SocialLink/Google";
 import { FaSpinner } from "react-icons/fa";
-// import { imageUpload } from "../../Api/utils";
+import { imageUpload } from "../../Api/utils";
 // import { useMutation } from "@tanstack/react-query";
 // import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { getAuth } from "firebase/auth";
 
 const Register = () => {
+  const auth = getAuth();
   // const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
-  const { user, handleLogout } = useContext(AuthContext);
-  console.log(user);
+  const { handleLogout } = useContext(AuthContext);
+
   const {
     handleUserCreate,
     HandleUpdateProfile,
@@ -39,7 +41,7 @@ const Register = () => {
   // });
   const onSubmit = async (data) => {
     setLoading(true);
-    // const imageFile = data.photoURL[0];
+    const imageFile = data.photoURL[0];
     try {
       // Create user and get the user object
       const userCredential = await handleUserCreate(
@@ -47,13 +49,16 @@ const Register = () => {
         data?.password
       );
       const user = userCredential.user;
-
+      console.log(user);
       // Upload image
-      // const pic = await imageUpload(imageFile);
+      const pic = await imageUpload(imageFile);
 
       // Update user profile
-      // const update = await HandleUpdateProfile(user, data?.name, pic);
-      // await userUpdateInfo(update);
+      await HandleUpdateProfile(data?.name, pic);
+
+      const updatedUser = auth.currentUser;
+      console.log("Updated user:", updatedUser);
+
       await sendEmailVerify(user);
 
       // console.log("User updated successfully");
