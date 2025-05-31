@@ -2,12 +2,17 @@ import { createBrowserRouter } from "react-router";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import DashboardLayout from "../Layout/DashboardLayout";
-import HomeDashboard from "../Pages/Dashboard/Home/HomeDashboard";
+// import HomeDashboard from "../Pages/Dashboard/Home/HomeDashboard";
 import Message from "../Pages/Dashboard/Pages/Message";
 import Setting from "../Pages/Dashboard/Pages/Setting";
 import NotificationUser from "../Pages/Dashboard/Pages/NotificationUser";
 import PrivateRoutes from "./PrivateRoutes";
-
+import { lazy } from "react";
+import { Suspense } from "react";
+import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
+const HomeDashboard = lazy(() =>
+  import("../Pages/Dashboard/Home/HomeDashboard")
+);
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -21,7 +26,9 @@ export const router = createBrowserRouter([
         index: true,
         element: (
           <PrivateRoutes>
-            <HomeDashboard />
+            <Suspense fallback={<LoadingSpinner />}>
+              <HomeDashboard />
+            </Suspense>
           </PrivateRoutes>
         ),
       },

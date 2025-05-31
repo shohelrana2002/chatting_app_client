@@ -36,10 +36,11 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
-  const HandleUpdateProfile = (name, photo) => {
+  const HandleUpdateProfile = (name, photo, phoneNumber) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
+      phoneNumber: phoneNumber,
     });
   };
   const sendEmailVerify = (user) => {
