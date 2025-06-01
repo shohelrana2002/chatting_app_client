@@ -1,4 +1,3 @@
-import React from "react";
 import MessageItemLeft from "../../../Components/MessageItems/MessageItemLeft";
 import MessageItemRight from "../../../Components/MessageItems/MessageItemRight";
 import { Helmet } from "react-helmet";
