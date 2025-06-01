@@ -11,6 +11,7 @@ import { imageUpload } from "../../Api/utils";
 // import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { getAuth } from "firebase/auth";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const auth = getAuth();
@@ -21,7 +22,6 @@ const Register = () => {
   const {
     handleUserCreate,
     HandleUpdateProfile,
-    // eslint-disable-next-line no-unused-vars
     sendEmailVerify,
     setLoading,
     loading,
@@ -60,15 +60,13 @@ const Register = () => {
       console.log("Updated user:", updatedUser);
 
       await sendEmailVerify(user);
-
-      // console.log("User updated successfully");
       toast.success("Account created successfully! Please verify your email.");
     } catch (error) {
       toast.error(error.message);
     } finally {
-      setLoading(false);
-      await handleLogout();
       navigate("/login");
+      await handleLogout();
+      setLoading(false);
     }
   };
 
@@ -94,6 +92,9 @@ const Register = () => {
   ];
   return (
     <>
+      <Helmet>
+        <title>Chatting || Register</title>
+      </Helmet>
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="md:w-[40%] w-full">

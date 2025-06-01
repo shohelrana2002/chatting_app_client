@@ -6,8 +6,6 @@ import CommonLoading from "../../LoadingSpinner/CommonLoading";
 
 const FriendsList = () => {
   const { user } = useContext(AuthContext);
-
-  console.log(user);
   return (
     <>
       {user ? (
