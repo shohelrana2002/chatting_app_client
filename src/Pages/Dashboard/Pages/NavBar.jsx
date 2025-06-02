@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { CgHome } from "react-icons/cg";
 import NavBarItems from "../../../Shared/NavBar/NavBarItems";
 import { FaUpload } from "react-icons/fa";
@@ -11,9 +12,13 @@ import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import useCloudinaryUpload from "../../../Hooks/useCloudinaryUpload ";
+import { getAuth } from "firebase/auth";
 const NavBar = () => {
+  const auth = getAuth();
+
   const { user } = useContext(AuthContext);
-  const { handleLogout } = useAuth();
+  const { handleLogout, HandleUpdateProfile } = useAuth();
   const navigate = useNavigate();
 
   const logOutUser = async () => {
@@ -25,10 +30,21 @@ const NavBar = () => {
       console.log(error, "Handle Logout Error ");
     }
   };
-  // image upload
-  const handleUpload = () => {
-    console.log("hi");
+  const { handleUpload, widgetReady } = useCloudinaryUpload();
+  const name = auth?.currentUser?.displayName;
+  const handleClick = () => {
+    handleUpload(async (url) => {
+      try {
+        await HandleUpdateProfile(name, url);
+        console.log(url);
+      } catch (error) {
+        console.log(error);
+      }
+      console.log("Image URL received:", url);
+      // Optional: send to backend or show preview
+    });
   };
+
   return (
     <>
       <div className="drawer  lg:drawer-open">
@@ -60,7 +76,8 @@ const NavBar = () => {
                   </div>
                 </div>
                 <span
-                  onClick={handleUpload}
+                  onClick={handleClick}
+                  disabled={!widgetReady}
                   className="absolute cursor-pointer hidden group-hover:block text-xl transition-all duration-500  left-[104px] -translate-y-1/2  top-12"
                 >
                   <FaUpload />
