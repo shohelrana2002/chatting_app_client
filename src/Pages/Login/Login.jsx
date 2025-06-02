@@ -7,8 +7,9 @@ import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import Google from "../../Shared/SocialLink/Google";
 import { getAuth, reload } from "firebase/auth";
-
 const Login = () => {
+  // Data Base Save
+
   const navigate = useNavigate();
   const { handleLogin, loading, setLoading } = useAuth();
   const [show, setShow] = useState(false);

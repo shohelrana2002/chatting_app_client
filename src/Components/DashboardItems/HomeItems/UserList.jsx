@@ -1,7 +1,5 @@
-import React from "react";
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
 import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
-
 const UserList = () => {
   return (
     <div className="h-[360px] w-full  p-2 rounded-2xl shadow overflow-y-scroll">

@@ -10,15 +10,25 @@ import useAuth from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 const NavBar = () => {
+  const { user } = useContext(AuthContext);
   const { handleLogout } = useAuth();
   const navigate = useNavigate();
-  const logOutUser = () => {
-    handleLogout().then(() => {
+
+  const logOutUser = async () => {
+    try {
+      await handleLogout();
       navigate("/login");
-    });
+    } catch (error) {
+      toast(error);
+      console.log(error, "Handle Logout Error ");
+    }
   };
-  const { user } = useContext(AuthContext);
+  // image upload
+  const handleUpload = () => {
+    console.log("hi");
+  };
   return (
     <>
       <div className="drawer  lg:drawer-open">
@@ -49,7 +59,10 @@ const NavBar = () => {
                     <img src={`${user?.photoURL}`} />
                   </div>
                 </div>
-                <span className="absolute cursor-pointer hidden group-hover:block text-xl transition-all duration-500  left-[104px] -translate-y-1/2  top-12">
+                <span
+                  onClick={handleUpload}
+                  className="absolute cursor-pointer hidden group-hover:block text-xl transition-all duration-500  left-[104px] -translate-y-1/2  top-12"
+                >
                   <FaUpload />
                 </span>
               </div>

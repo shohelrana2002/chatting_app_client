@@ -3,7 +3,7 @@ import profile from "/profileImage.avif";
 const DashBoardLink = ({ name, buttonName, address, img = profile }) => {
   return (
     <>
-      <div className="flex items-center gap-y-4 gap-x-12">
+      <div className="flex  items-center gap-y-4 gap-x-12">
         <div>
           <picture>
             <img
