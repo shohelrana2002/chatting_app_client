@@ -34,7 +34,6 @@ const Login = () => {
         return toast.error("Please verify your email before logging in.");
       }
       // save firebase
-      // save firebase
       const db = getDatabase();
       let userRef = push(ref(db, "users/"));
       set(userRef, {
