@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import Google from "../../Shared/SocialLink/Google";
 import { getAuth, reload } from "firebase/auth";
-import { getDatabase, push, ref, set } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 const Login = () => {
   // Data Base Save
 
@@ -34,9 +34,9 @@ const Login = () => {
         return toast.error("Please verify your email before logging in.");
       }
       // save firebase
-      const db = getDatabase();
-      let userRef = push(ref(db, "users/"));
-      set(userRef, {
+      const database = getDatabase();
+      // let userRef = push(ref(db, "users/"));
+      set(ref(database, `users/${currentUser?.uid}`), {
         username: currentUser?.displayName,
         email: currentUser?.email,
         profile_picture: currentUser?.photoURL,
