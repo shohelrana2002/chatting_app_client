@@ -11,11 +11,14 @@ const Google = () => {
   const google = async () => {
     try {
       setLoading(true);
-      await handleGoogle();
-      set(ref(database, "users"), {
-        username: "mer",
-        email: "email",
-        profile_picture: "photo",
+      const user = await handleGoogle();
+      console.log(user?.user);
+      set(ref(database, `users/${user?.user?.uid}`), {
+        username: user?.user?.displayName,
+        email: user?.user?.email,
+        profile_picture:
+          user?.user?.photoURL ||
+          `https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
       });
       navigate("/");
     } catch (error) {

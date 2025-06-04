@@ -70,15 +70,6 @@ const Register = () => {
     }
   };
 
-  // try {
-
-  //   toast.success("Account created successfully! Please verify your email.");
-  //   navigate("/");
-  // } catch (error) {
-  //   toast.error(error.message);
-  //   setLoading(false);
-  // }
-  // };
   const password = watch("password", "");
   const passwordRules = [
     { text: "At least 8 characters", valid: password.length >= 8 },
