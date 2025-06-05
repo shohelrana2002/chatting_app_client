@@ -36,7 +36,7 @@ const Login = () => {
       // save firebase
       const database = getDatabase();
       // let userRef = push(ref(db, "users/"));
-      // 1 2
+      // 1 2 3
       set(ref(database, `users/${currentUser?.uid}`), {
         username: currentUser?.displayName,
         email: currentUser?.email,
