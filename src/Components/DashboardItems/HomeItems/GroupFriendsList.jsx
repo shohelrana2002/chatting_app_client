@@ -5,7 +5,7 @@ import { app } from "../../../Firebase/Firebase.config";
 import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import CommonLoading from "../../LoadingSpinner/CommonLoading";
 const GroupFriendsList = () => {
-  // firebase data get in real time
+  // firebase data get in real time get
   const [data, setData] = useState(null);
   const database = getDatabase(app);
 
