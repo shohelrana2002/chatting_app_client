@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
-import { getDatabase, ref, onValue } from "firebase/database";
-import { app } from "../../../Firebase/Firebase.config";
 import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import CommonLoading from "../../LoadingSpinner/CommonLoading";
+import { database } from "../../../Firebase/Firebase.config";
+import { onValue, ref } from "firebase/database";
 const GroupFriendsList = () => {
   // firebase data get in real time get
-  // firebase data get in real time get
   const [data, setData] = useState(null);
-  const database = getDatabase(app);
 
   useEffect(() => {
     const dataRef = ref(database, "users/");
@@ -19,7 +17,7 @@ const GroupFriendsList = () => {
 
     // Optional: clean up listener on unmount
     return () => unsubscribe();
-  }, [database]);
+  }, []);
 
   return (
     <div className="h-[360px] w-full -mt-4 overflow-y-auto p-2 rounded-2xl shadow ">
@@ -52,7 +50,10 @@ const GroupFriendsList = () => {
                 Object.entries(data).map(([key, user]) => (
                   <DashBoardLink
                     key={key}
-                    img={user?.profile_picture}
+                    img={
+                      user?.profile_picture ||
+                      `https://i.ibb.co/jkhMdsMB/niclas-illg-wz-VQp-NRIHg-unsplash.jpg`
+                    }
                     address="Dhaka"
                     name={user?.username}
                     buttonName="Block"
