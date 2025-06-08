@@ -7,6 +7,7 @@ import { onValue, ref } from "firebase/database";
 const GroupFriendsList = () => {
   // firebase data get in real time get
   const [data, setData] = useState(null);
+  console.log(data.length);
 
   useEffect(() => {
     const dataRef = ref(database, "users/");
@@ -43,7 +44,7 @@ const GroupFriendsList = () => {
       {/* Group list */}
       <div className="-mt-8 rounded-2xl ">
         <>
-          <DashBoardTitle groupName="Group List" />
+          <DashBoardTitle groupName="Group List" length={data?.length} />
           {data ? (
             <>
               {data &&
@@ -56,7 +57,7 @@ const GroupFriendsList = () => {
                     }
                     address="Dhaka"
                     name={user?.username}
-                    buttonName="Block"
+                    buttonName="Create"
                   />
                 ))}
             </>
