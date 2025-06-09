@@ -15,7 +15,7 @@ const GroupFriendsList = () => {
       setData(val);
     });
 
-    // Optional: clean up listener on unmount
+    // Optional: clean up listener on
     return () => unsubscribe();
   }, []);
 
