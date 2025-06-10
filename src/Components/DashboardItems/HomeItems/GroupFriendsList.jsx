@@ -6,7 +6,7 @@ import { database } from "../../../Firebase/Firebase.config";
 import { onValue, ref } from "firebase/database";
 const GroupFriendsList = () => {
   // firebase data get in real time get
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(0); //useState(null) hab e
 
   useEffect(() => {
     const dataRef = ref(database, "users/");
