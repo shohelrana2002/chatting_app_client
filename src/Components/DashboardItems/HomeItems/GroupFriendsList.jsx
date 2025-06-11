@@ -1,24 +1,8 @@
-import { useEffect, useState } from "react";
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
 import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import CommonLoading from "../../LoadingSpinner/CommonLoading";
-import { database } from "../../../Firebase/Firebase.config";
-import { onValue, ref } from "firebase/database";
+
 const GroupFriendsList = () => {
-  // firebase data get in real time get
-  const [data, setData] = useState(0); //useState(null) hab e
-
-  useEffect(() => {
-    const dataRef = ref(database, "users/");
-    const unsubscribe = onValue(dataRef, (snapshot) => {
-      const val = snapshot.val();
-      setData(val);
-    });
-
-    // Optional: clean up listener on unmount 3
-    return () => unsubscribe();
-  }, []);
-
   return (
     <div className="h-[360px] w-full -mt-4 overflow-y-auto p-2 rounded-2xl shadow ">
       <label className="input bg-blue-50 z-10">
@@ -42,35 +26,7 @@ const GroupFriendsList = () => {
       </label>
       {/* Group list */}
       <div className="-mt-8 rounded-2xl ">
-        <>
-          <DashBoardTitle
-            groupName="Group List"
-            length={Object.keys(data).length}
-          />
-          {data ? (
-            <>
-              {data &&
-                Object.entries(data).map(([key, user]) => (
-                  <DashBoardLink
-                    key={key}
-                    img={
-                      user?.profile_picture ||
-                      `https://i.ibb.co/jkhMdsMB/niclas-illg-wz-VQp-NRIHg-unsplash.jpg`
-                    }
-                    address="Dhaka"
-                    name={user?.username}
-                    buttonName="Create"
-                  />
-                ))}
-            </>
-          ) : (
-            <>
-              <CommonLoading />
-              <CommonLoading />
-              <CommonLoading />
-            </>
-          )}
-        </>
+        <DashBoardTitle groupName="User List" />
       </div>
     </div>
   );

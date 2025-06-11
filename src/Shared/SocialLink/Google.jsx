@@ -12,7 +12,6 @@ const Google = () => {
     try {
       setLoading(true);
       const user = await handleGoogle();
-      console.log(user?.user);
       set(ref(database, `users/${user?.user?.uid}`), {
         username: user?.user?.displayName,
         email: user?.user?.email,

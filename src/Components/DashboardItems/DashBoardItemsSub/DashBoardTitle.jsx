@@ -1,6 +1,6 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-const DashBoardTitle = ({ groupName, length }) => {
+const DashBoardTitle = ({ groupName = "Undefined", length = "" }) => {
   return (
     <div className="flex justify-between items-center my-10">
       <h1 className="text-xl font-bold ">{groupName}</h1>
