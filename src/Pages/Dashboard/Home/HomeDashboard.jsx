@@ -6,8 +6,11 @@ import FriendRequest from "../../../Components/DashboardItems/HomeItems/FriendRe
 import Group from "../../../Components/DashboardItems/HomeItems/Group";
 import BlockUsers from "../../../Components/DashboardItems/HomeItems/BlockUsers";
 import { Helmet } from "react-helmet";
+// import { getAuth } from "firebase/auth";
 
 const HomeDashboard = () => {
+  // const auth = getAuth();
+  // console.log(auth?.currentUser);
   return (
     <div className="grid justify-center items-center grid-cols-1 md:grid-cols-3 gap-x-2">
       <Helmet>

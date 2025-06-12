@@ -43,13 +43,15 @@ const Register = () => {
     setLoading(true);
     const imageFile = data.photoURL[0];
     try {
+      setLoading(true);
       // Create user and get the user object
       const userCredential = await handleUserCreate(
         data?.email,
         data?.password
       );
+      setLoading(true);
       const user = userCredential.user;
-      console.log(user);
+      // console.log(user);
       // Upload image
       const pic = await imageUpload(imageFile);
 

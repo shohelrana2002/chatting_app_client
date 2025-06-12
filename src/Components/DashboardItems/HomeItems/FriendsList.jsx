@@ -21,6 +21,8 @@ const FriendsList = () => {
             address="Dhaka"
             name={user?.displayName}
             buttonName="Block"
+            userId={user?.uid}
+            userClick={(id) => console.log(id, "user id")}
           />
         </div>
       ) : (

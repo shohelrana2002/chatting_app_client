@@ -28,7 +28,7 @@ const Login = () => {
       const auth = getAuth();
       await reload(auth.currentUser); // Refresh user info
       const currentUser = auth.currentUser;
-      // console.log(currentUser);
+
       if (!currentUser?.emailVerified) {
         setLoading(false);
         return toast.error("Please verify your email before logging in.");
@@ -41,9 +41,10 @@ const Login = () => {
         username: currentUser?.displayName,
         email: currentUser?.email,
         profile_picture: currentUser?.photoURL,
+        userId: currentUser?.uid,
       });
-      setLoading(false);
       navigate("/");
+      setLoading(false);
     } catch (error) {
       toast.error(error.message);
       setLoading(false);

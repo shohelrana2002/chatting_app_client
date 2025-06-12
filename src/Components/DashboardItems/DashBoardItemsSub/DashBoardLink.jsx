@@ -1,9 +1,16 @@
 import React from "react";
 import profile from "/profileImage.avif";
-const DashBoardLink = ({ name, buttonName, address, img = profile }) => {
+const DashBoardLink = ({
+  name,
+  buttonName,
+  address,
+  img = profile,
+  userClick,
+  userId,
+}) => {
   return (
     <>
-      <div className="flex w-full items-center gap-y-4 gap-x-12">
+      <div className="flex w-full items-center justify-between  gap-y-4 gap-x-4">
         <div>
           <picture>
             <img
@@ -18,7 +25,12 @@ const DashBoardLink = ({ name, buttonName, address, img = profile }) => {
           <p className="text-xs">{address}</p>
         </div>
         <div>
-          <button className="btn btn-sm btn-outline">{buttonName}</button>
+          <button
+            onClick={() => userClick(userId)}
+            className="btn btn-sm btn-primary"
+          >
+            {buttonName}
+          </button>
         </div>
       </div>
       <div className="divider divider-neutral shadow-2xs"></div>

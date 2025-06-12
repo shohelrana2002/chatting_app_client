@@ -16,6 +16,7 @@ const Google = () => {
         username: user?.user?.displayName,
         email: user?.user?.email,
         profile_picture: user?.user?.photoURL,
+        userId: user?.user?.uid,
       });
       navigate("/");
     } catch (error) {
