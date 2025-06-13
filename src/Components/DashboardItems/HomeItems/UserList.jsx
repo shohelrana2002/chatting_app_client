@@ -2,16 +2,23 @@ import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
 import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import CommonLoading from "../../LoadingSpinner/CommonLoading";
 import { useEffect, useState } from "react";
-import { onValue, ref } from "firebase/database";
-import { database } from "../../../Firebase/Firebase.config";
+import {
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  remove,
+  set,
+} from "firebase/database";
 import { getAuth } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const UserList = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const auth = getAuth();
   const currentUser = auth.currentUser;
-
+  const database = getDatabase();
   useEffect(() => {
     const dataRef = ref(database, "users/");
     const unsubscribe = onValue(dataRef, (snapshot) => {
@@ -21,7 +28,7 @@ const UserList = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [database]);
 
   // Filter out current user
   const filteredUsers = data
@@ -30,6 +37,52 @@ const UserList = () => {
         ([_, user]) => user?.email !== currentUser?.email
       )
     : [];
+
+  //  send to friend request and notification
+  const handleFriendRequest = (receiver = {}) => {
+    if (!currentUser || !receiver.userUid) {
+      console.error("Invalid user data for friend request");
+      return;
+    }
+    const senderUid = currentUser?.uid;
+
+    const requestData = {
+      senderUid,
+      senderEmail: currentUser?.email,
+      senderProfile: currentUser?.photoURL,
+      senderUsername: currentUser?.displayName,
+
+      receiverUid: receiver?.userUid,
+      receiverEmail: receiver?.email,
+      receiverProfile: receiver?.profile_picture,
+      receiverUsername: receiver?.username,
+
+      createdAt: Date.now(),
+    };
+
+    // Save Friend Request
+    set(push(ref(database, "friendRequest/")), requestData)
+      .then(() => {
+        // Notification Save
+        return set(push(ref(database, "notification/")), {
+          notificationMsg: `${currentUser.displayName} sent you a friend request`,
+          senderProfile: currentUser.photoURL,
+          createdAt: Date.now(),
+        });
+      })
+      .then(() => {
+        toast.success("Friend Request Send");
+        // Save unique id in localStorage
+        const uniqueId = senderUid + receiver.userUid;
+        localStorage.setItem(
+          "SenderReceiverId",
+          JSON.stringify({ FRid: uniqueId })
+        );
+      })
+      .catch((err) => {
+        console.error("Error sending friend request:", err);
+      });
+  };
 
   return (
     <div className="h-[360px] w-full p-2 rounded-2xl shadow overflow-y-scroll">
@@ -53,7 +106,15 @@ const UserList = () => {
             name={user?.username}
             buttonName="+"
             userId={key}
-            userClick={(id) => console.log("Clicked user ID:", id)}
+            userClick={() => (
+              remove(ref(database, `users/${key}`)),
+              handleFriendRequest({
+                userUid: key,
+                email: user?.email,
+                profile_picture: user?.profile_picture,
+                username: user?.username,
+              })
+            )}
           />
         ))
       ) : (
