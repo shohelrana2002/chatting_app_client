@@ -7,6 +7,7 @@ const DashBoardLink = ({
   img = profile,
   userClick,
   userId,
+  data,
 }) => {
   return (
     <>
@@ -26,7 +27,7 @@ const DashBoardLink = ({
         </div>
         <div>
           <button
-            onClick={() => userClick(userId)}
+            onClick={() => userClick(data, userId)}
             className="btn btn-sm btn-primary"
           >
             {buttonName}

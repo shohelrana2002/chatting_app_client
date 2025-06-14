@@ -1,6 +1,4 @@
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
-import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
-import CommonLoading from "../../LoadingSpinner/CommonLoading";
 
 const GroupFriendsList = () => {
   return (

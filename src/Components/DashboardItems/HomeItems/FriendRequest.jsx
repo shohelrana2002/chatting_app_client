@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
-import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import {
   getDatabase,
   onValue,
@@ -34,17 +33,6 @@ const FriendRequest = () => {
 
     return () => unsubscribe();
   }, [database]);
-
-  // Filter out current user
-  if (loading) {
-    return (
-      <div className="min-h-3">
-        <CommonLoading />
-        <CommonLoading />
-        <CommonLoading />
-      </div>
-    );
-  }
 
   //  send to friend request and notification
   const handleFriendConfirm = (frnConfirm = {}) => {
@@ -87,6 +75,9 @@ const FriendRequest = () => {
       });
   };
   // modal
+  if (loading) {
+    return <CommonLoading />;
+  }
   return (
     <div className="h-[360px] w-full  p-2 rounded-2xl shadow overflow-y-scroll">
       <DashBoardTitle

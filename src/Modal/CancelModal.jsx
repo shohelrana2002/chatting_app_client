@@ -1,4 +1,3 @@
-import React from "react";
 import Modal from "react-modal";
 import { X } from "lucide-react";
 
@@ -10,8 +9,7 @@ const CancelModal = ({ isOpen, onRequestClose, onConfirm }) => {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="Cancel Modal"
-      className="bg-white p-6 max-w-md mx-auto mt-40 rounded-xl shadow-lg relative outline-none"
-      overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+      className="bg-amber-300 p-6 max-w-sm mx-auto mt-40 rounded-xl shadow-lg relative outline-none"
     >
       <button
         onClick={onRequestClose}

@@ -91,8 +91,6 @@ const UserList = () => {
       {loading ? (
         <div className="flex flex-col gap-3 items-center justify-center mt-4">
           <CommonLoading />
-          <CommonLoading />
-          <CommonLoading />
         </div>
       ) : filteredUsers.length > 0 ? (
         filteredUsers.map(([key, user]) => (
