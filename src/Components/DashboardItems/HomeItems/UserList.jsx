@@ -98,21 +98,18 @@ const UserList = () => {
         filteredUsers.map(([key, user]) => (
           <DashBoardLink
             key={key}
-            img={
-              user?.profile_picture ||
-              `https://i.ibb.co/jkhMdsMB/niclas-illg-wz-VQp-NRIHg-unsplash.jpg`
-            }
+            img={user?.profile_picture || user?.receiverProfile}
             address="Dhaka"
-            name={user?.username}
+            name={user?.username || user?.receiverUsername}
             buttonName="+"
-            userId={key}
+            userId={key || user?.receiverUid}
             userClick={() => (
               remove(ref(database, `users/${key}`)),
               handleFriendRequest({
-                userUid: key,
-                email: user?.email,
-                profile_picture: user?.profile_picture,
-                username: user?.username,
+                userUid: key || user?.receiverUid,
+                email: user?.email || user?.receiverEmail,
+                profile_picture: user?.profile_picture || user?.receiverProfile,
+                username: user?.username || user?.receiverUsername,
               })
             )}
           />

@@ -26,7 +26,7 @@ const GroupFriendsList = () => {
       </label>
       {/* Group list */}
       <div className="-mt-8 rounded-2xl ">
-        <DashBoardTitle groupName="User List" />
+        <DashBoardTitle groupName="Create Group" />
       </div>
     </div>
   );
