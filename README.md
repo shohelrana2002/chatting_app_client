@@ -1,12 +1,71 @@
-# React + Vite
+# 🔥 Realtime Chatting App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, real-time chatting application built with **React 19**, **Firebase**, **TailwindCSS**, and **React Query**. This app allows users to sign in, add friends, and chat in real-time with a responsive, fast, and intuitive interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+[🔗 Click here to view the live app](not Compplate)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+---
+
+
+## ✨ Features (Upgraded)
+
+- 🔐 **User Authentication** (Firebase Auth – Email/Password + Google OAuth)
+- 🧑‍🤝‍🧑 **Friend Requests & Blocking**: Send, accept/reject, and block/unblock users
+- 💬 **Realtime One-on-One Chat**: Message updates in real-time using Firebase Realtime Database
+- 🖼 **Media Support**: Send text, emojis, images & file attachments
+- 🎥 **Typing Indicator**: Shows when someone is typing
+- 🟢 **Online Presence**: Active/Offline status updates
+- 🔔 **Push Notifications**: Browser notifications for new messages or friend requests
+- 🔊 **Text-to-Speech (TTS)**: Read incoming messages aloud
+- 🌍 **Multi-language Support**: Including English & বাংলা
+- theming & **Dark Mode** toggle
+- 🔠 **Search Users and Friends**
+- 📦 Optimized with **React Query** & local caching
+- 💅 **Beautiful UI** with TailwindCSS + Lucide icons
+- ⚡ **SEO-friendly** via React Helmet
+- 📁 **eslint + Prettier** code formatting
+- ❤️ **Lightweight Animations** with Framer Motion & GIFs
+
+---
+
+## 🖼 GIF Preview
+
+```gif
+![Chat App in Action](./assets/chat-preview.gif)
+
+## 🛠️ Built With
+
+| Technology            | Version    |
+|-----------------------|------------|
+| React                 | ^19.0.0    |
+| React DOM             | ^19.0.0    |
+| Firebase              | ^11.4.0    |
+| TailwindCSS           | ^4.0.9     |
+| @tailwindcss/vite     | ^4.0.9     |
+| React Query           | ^5.67.2    |
+| Moment.js             | ^2.30.1    |
+| React Helmet          | ^6.1.0     |
+| React Hook Form       | ^7.54.2    |
+| React Hot Toast       | ^2.5.2     |
+| Axios                 | ^1.8.2     |
+| Lucide React          | ^0.515.0   |
+| React Modal           | ^3.16.3    |
+| React Spinners        | ^0.15.0    |
+| PropTypes             | ^15.8.1    |
+| React Router          | ^7.2.0     |
+| React Icons           | ^5.5.0     |
+
+---
+
+## 📦 Installation & Setup
+
+1. **Clone the repo**
+
+   ```bash
+   git clone https://github.com/your-username/chat-app.git
+   cd chat-app
