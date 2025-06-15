@@ -11,19 +11,23 @@ import {
   set,
 } from "firebase/database";
 import toast from "react-hot-toast";
+import { auth } from "../../../AuthProvider/AuthProvider";
+import moment from "moment/moment";
 
 const FriendsList = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const database = getDatabase();
+  const { currentUser } = auth;
 
   useEffect(() => {
     const userRef = ref(database, "friends/");
     const unsubscribe = onValue(userRef, (snapshot) => {
       const val = snapshot.val();
-      setData(val);
+      setData(val || {});
       setLoading(false);
     });
+
     return () => unsubscribe();
   }, [database]);
   //  Block Users
@@ -44,6 +48,16 @@ const FriendsList = () => {
         console.error(error);
       });
   };
+
+  // ✅ Filter only the current user's friends
+  // eslint-disable-next-line no-unused-vars
+  const filteredFriends = Object.entries(data).filter(([_, user]) => {
+    return (
+      user?.senderEmail === currentUser?.email ||
+      user?.receiverEmail === currentUser?.email
+    );
+  });
+
   if (loading) {
     return <CommonLoading />;
   }
@@ -51,8 +65,37 @@ const FriendsList = () => {
     <>
       <div className="h-[360px] w-full  p-2 rounded-2xl shadow overflow-y-scroll">
         <DashBoardTitle groupName={"Friend List"} />
-
-        {data ? (
+        {filteredFriends.length > 0 ? (
+          filteredFriends.map(([key, user]) => {
+            const isCurrentUserSender =
+              user?.senderEmail === currentUser?.email;
+            return (
+              <DashBoardLink
+                key={key}
+                address={moment(user?.createdAt)
+                  .local()
+                  .format("MMMM  Do Y,h:mm A")}
+                img={
+                  isCurrentUserSender
+                    ? user?.receiverProfile
+                    : user?.senderProfile
+                }
+                name={
+                  isCurrentUserSender
+                    ? user?.receiverUsername
+                    : user?.senderUsername
+                }
+                buttonName="Block"
+                userClick={() => handleBlockUser(user, key)}
+              />
+            );
+          })
+        ) : (
+          <>
+            <p className="text-center text-gray-400">No friends found.</p>
+          </>
+        )}
+        {/* {data ? (
           Object.entries(data).map(([key, user]) => (
             <DashBoardLink
               key={key}
@@ -74,7 +117,7 @@ const FriendsList = () => {
               No friend requests found.
             </p>
           </>
-        )}
+        )} */}
       </div>
     </>
   );

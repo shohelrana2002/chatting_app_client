@@ -12,6 +12,7 @@ import CommonLoading from "../../LoadingSpinner/CommonLoading";
 import toast from "react-hot-toast";
 import FriendRequestLink from "../FriendRequestComponents/FriendRequestLink";
 import CancelModal from "../../../Modal/CancelModal";
+import moment from "moment";
 
 const FriendRequest = () => {
   const [data, setData] = useState({});
@@ -87,9 +88,9 @@ const FriendRequest = () => {
       {data ? (
         Object.entries(data).map(([key, user]) => (
           <FriendRequestLink
-            key={key}
+            key={key} //"MMMM  Do Y,h:mm A"
+            address={moment(user?.createdAt).local().format("MMMM Do Y,h:mm A")}
             img={user?.receiverProfile}
-            address="Dhaka"
             name={user?.receiverUsername}
             buttonName="Confirm"
             cancel={"Cancel"}

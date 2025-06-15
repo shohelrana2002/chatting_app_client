@@ -14,7 +14,7 @@ import {
 import { app } from "../Firebase/Firebase.config";
 // import axios from "axios";
 export const AuthContext = createContext(null);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);

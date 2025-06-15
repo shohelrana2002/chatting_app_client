@@ -12,6 +12,7 @@ import {
 import CommonLoading from "../../LoadingSpinner/CommonLoading";
 import toast from "react-hot-toast";
 import CancelModal from "../../../Modal/CancelModal";
+import moment from "moment";
 
 const BlockUsers = () => {
   // modal
@@ -66,9 +67,12 @@ const BlockUsers = () => {
         Object.entries(data).map(([key, user]) => (
           <DashBoardLink
             key={key}
+            address={moment(user?.blockedAt)
+              .local()
+              .format("MMMM  Do Y,h:mm A")}
             buttonName={"Unblock"}
-            img={user?.senderProfile}
-            name={user?.senderUsername}
+            img={user?.receiverProfile}
+            name={user?.receiverUsername}
             userId={key}
             userClick={() => {
               setSelectedCancelId(key);

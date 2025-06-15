@@ -12,6 +12,7 @@ import {
 } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 const UserList = () => {
   const [data, setData] = useState({});
@@ -97,7 +98,9 @@ const UserList = () => {
           <DashBoardLink
             key={key}
             img={user?.profile_picture || user?.receiverProfile}
-            address="Dhaka"
+            address={moment(user?.createdAt)
+              .local()
+              .format("MMMM Do Y,h:mm A ")}
             name={user?.username || user?.receiverUsername}
             buttonName="+"
             userId={key || user?.receiverUid}
