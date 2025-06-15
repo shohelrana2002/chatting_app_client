@@ -39,7 +39,7 @@ const BlockUsers = () => {
 
     remove(ref(database, `blockedUsers/${id}`))
       .then(() => {
-        toast.success("SuccessFully Unblock");
+        toast.success(`${cancelledUser?.senderUsername} Unblock`);
 
         return set(push(ref(database, "friends/")), {
           ...cancelledUser,

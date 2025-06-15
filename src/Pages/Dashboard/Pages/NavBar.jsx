@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { CgHome } from "react-icons/cg";
 import NavBarItems from "../../../Shared/NavBar/NavBarItems";
 import { FaUpload } from "react-icons/fa";
@@ -36,11 +35,12 @@ const NavBar = () => {
     handleUpload(async (url) => {
       try {
         await HandleUpdateProfile(name, url);
-        console.log(url);
+        // console.log(url);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        toast.error(error.message);
       }
-      console.log("Image URL received:", url);
+      // console.log("Image URL received:", url);
       // Optional: send to backend or show preview
     });
   };

@@ -13,7 +13,7 @@ const CancelModal = ({ isOpen, onRequestClose, onConfirm }) => {
     >
       <button
         onClick={onRequestClose}
-        className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
+        className="absolute top-3 cursor-pointer right-3 text-gray-500 hover:text-red-500"
       >
         <X size={20} />
       </button>
@@ -26,15 +26,15 @@ const CancelModal = ({ isOpen, onRequestClose, onConfirm }) => {
       <div className="flex justify-end gap-3">
         <button
           onClick={onRequestClose}
-          className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+          className="px-4 py-2 rounded cursor-pointer bg-gray-200 hover:bg-gray-300"
         >
           No
         </button>
         <button
           onClick={onConfirm}
-          className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600"
+          className="px-4 py-2 cursor-pointer rounded bg-red-500 text-white hover:bg-red-600"
         >
-          Yes, Cancel
+          Yes
         </button>
       </div>
     </Modal>
