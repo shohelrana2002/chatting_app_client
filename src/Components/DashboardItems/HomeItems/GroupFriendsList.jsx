@@ -1,6 +1,20 @@
+import CancelModal from "../../../Modal/CancelModal";
+import GroupCreateModal from "../../../Modal/GroupCreateModal";
+import DashBoardLink from "../DashBoardItemsSub/DashBoardLink";
 import DashBoardTitle from "../DashBoardItemsSub/DashBoardTitle";
+import { useState } from "react";
 
 const GroupFriendsList = () => {
+  // modal
+  const [openCancelModal, setOpenCancelModal] = useState(false);
+  const [selectedCancelId, setSelectedCancelId] = useState(null);
+
+  // modal
+  const handleCancelRequest = (id) => {
+    console.log(id);
+  };
+  // modal
+
   return (
     <div className="h-[360px] w-full -mt-4 overflow-y-auto p-2 rounded-2xl shadow ">
       <label className="input bg-blue-50 z-10">
@@ -25,6 +39,24 @@ const GroupFriendsList = () => {
       {/* Group list */}
       <div className="-mt-8 rounded-2xl ">
         <DashBoardTitle groupName="Create Group" />
+        <DashBoardLink
+          name={"Create Group"}
+          buttonName={"Create"}
+          userClick={() => {
+            setSelectedCancelId("create_group");
+            setOpenCancelModal(true);
+          }}
+        />
+        <GroupCreateModal
+          isOpen={openCancelModal}
+          onRequestClose={() => setOpenCancelModal(false)}
+          onConfirm={() => {
+            if (selectedCancelId) {
+              handleCancelRequest(selectedCancelId);
+            }
+            setOpenCancelModal(false);
+          }}
+        />
       </div>
     </div>
   );
