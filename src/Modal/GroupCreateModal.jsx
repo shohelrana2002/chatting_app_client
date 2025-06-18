@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { imageUpload } from "../Api/utils";
 
 Modal.setAppElement("#root");
-
+// jj
 const GroupCreateModal = ({ isOpen, onRequestClose, onConfirm }) => {
   const [loading, setLoading] = useState(false);
 
@@ -16,7 +16,7 @@ const GroupCreateModal = ({ isOpen, onRequestClose, onConfirm }) => {
     formState: { errors },
   } = useForm();
 
-  // Modal বন্ধ হলে ফর্ম রিসেট হবে
+  // Modal বন্ধ হলে ফর্ম reset
   useEffect(() => {
     if (!isOpen) {
       reset();
