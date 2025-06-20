@@ -16,7 +16,7 @@ const GroupCreateModal = ({ isOpen, onRequestClose, onConfirm }) => {
     formState: { errors },
   } = useForm();
 
-  // Modal  c বন্ধ হলে ফর্ম রিসেট হবে
+  // Modal  c বন্ধ হলে ফর্ম রিসেট হবে oo
   useEffect(() => {
     if (!isOpen) {
       reset();
